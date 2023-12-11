@@ -48,6 +48,8 @@ begin_output_section
     fi
     output_info "   key provided:" $1
 
+    printf ${NEWLINE}
+
     # ask for the required full name
     output_info "Gathering user information..."
     read -p "$(printf ${BLUE}"   please enter your first initial followed by full last name (i.e jlumley, charvey, esheehan): "${ENDCOLOR})" FULLNAME
@@ -56,7 +58,7 @@ begin_output_section
         exit 1
     fi
 
-
+    printf ${NEWLINE}
 
     output_info "Gathering System Information..."
     output_info "   date:" $(date)
@@ -68,6 +70,8 @@ begin_output_section
     output_info "   processor:" $(uname -p)
     output_info "   architecture:" $(uname -m)
     output_info "   operating system:" $(uname -o)
+
+    printf ${NEWLINE}
 
     output_info "Checking for updates..."
     output_info "   updating..." 
@@ -87,12 +91,15 @@ begin_output_section
     sudo apt-get install ubuntu-advantage-tools landscape-client -y -qq
     output_success "    done"
 
+    printf ${NEWLINE}
 
     output_info "Initializing Ubuntu Pro..."
     output_info "   adding key(${GREEN}$1${BLUE})..."
     sudo pro attach $1
     sudo apt-get update -qq && sudo apt-get upgrade -qq
     output_success "    done"
+
+    printf ${NEWLINE}
 
     output_info "Initializing Landscape..."
     output_info "   adding machine..."
