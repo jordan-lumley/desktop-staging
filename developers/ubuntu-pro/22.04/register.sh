@@ -52,7 +52,7 @@ begin_output_section
 
     # ask for the required full name
     output_info "Gathering user information..."
-    read -p "$(printf ${BLUE}"   please enter your first initial followed by full last name (i.e jlumley, charvey, esheehan): "${ENDCOLOR})" FULLNAME
+    read -p "$(printf ${BLUE}"   please enter your first initial followed by full last name (i.e jlumley, charvey, esheehan): "${ENDCOLOR})" FULLNAME < /dev/tty
     if [ -z "$FULLNAME" ]; then
         output_error "   no full name provided, exiting..."
         exit 1
