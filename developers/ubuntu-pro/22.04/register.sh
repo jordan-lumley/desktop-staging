@@ -55,22 +55,27 @@ printf "Initializing machine..."
 begin_output_section
     output_info "Checking for updates..."
     output_info "   updating..." 
-    sudo apt-get update -qq
+    apt-get update -qq
     output_success "    done"
 
     output_info "   upgrading..." 
-    sudo apt-get upgrade -qq
+    apt-get upgrade -qq
     output_success "    done"
 
     output_info "   cleaning..." 
-    sudo apt-get autoremove -qq
+    apt-get autoremove -qq
     output_success "    done"
 
     printf ${NEWLINE}
 
     output_info "Installing prerequisites..."
     output_info "   adding packages..."
-    sudo apt-get install zenity ubuntu-advantage-tools landscape-client -y -qq
+    apt-get install zenity ubuntu-advantage-tools landscape-client -y -qq
+    output_success "    done"
+
+    output_info "Detaching in case already installed..."
+    pro detach
+    touch /etc/landscape/client.conf
     output_success "    done"
 
     printf ${NEWLINE}
@@ -113,13 +118,13 @@ begin_output_section
 
     output_info "Initializing Ubuntu Pro..."
     output_info "   adding key(${GREEN}${KEY}${BLUE})..."
-    sudo pro attach $KEY
-    sudo apt-get update -qq && sudo apt-get upgrade -qq
+    pro attach $KEY
+    apt-get update -qq && apt-get upgrade -qq
     output_success "    done"
 
     printf ${NEWLINE}
 
     output_info "Initializing Landscape..."
     output_info "   adding machine..."
-    sudo landscape-config --computer-title "$(uname -n)" --account-name round-2-pos --silent --script-users ALL --tags $NAMETAG
+    landscape-config --computer-title "$(uname -n)" --account-name round-2-pos --silent --script-users ALL --tags $NAMETAG
 end_output_section
