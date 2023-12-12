@@ -113,7 +113,7 @@ begin_output_section
 
     output_info "Initializing Ubuntu Pro..."
     output_info "   adding key(${GREEN}${KEY}${BLUE})..."
-    sudo pro attach $1
+    sudo pro attach $KEY
     sudo apt-get update -qq && sudo apt-get upgrade -qq
     output_success "    done"
 
